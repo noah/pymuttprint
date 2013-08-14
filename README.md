@@ -17,7 +17,7 @@ If you want nice logging, try this for the first line above:
 ## Usage
 
 PyMuttPrint is intended to be easy to use.  Simply edit `template.tex`
-to modify the output of your printed files.
+to modify the layout of your printed files.
 
 
 ## Motivation (Or, "why not just use [muttprint](http://muttprint.sourceforge.net/)?")
