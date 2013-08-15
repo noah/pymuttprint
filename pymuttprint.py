@@ -1,13 +1,15 @@
 #!/usr/bin/env python2
 
-import os
 import sys
 import email
+from os import chdir
+from os.path import join, abspath, dirname
 from subprocess import Popen, PIPE, STDOUT
 
+BASEDIR = dirname(abspath(__file__))
 
 try:
-    os.chdir("/tmp")
+    chdir("/tmp")
 except:
     sys.exit("Couldn't chdir to /tmp")
 
@@ -19,7 +21,7 @@ for part in m.walk():
     ct = part.get_content_type()
     cd = part.get('Content-Disposition')
     if ct == 'text/plain':
-        body += r'\\'.join(part.get_payload(decode=True).splitlines())
+        body += r'\\'.join(part.get_payload(decode=True).splitlines(False))
     else:
         fn = part.get_filename()
         if fn is not None: attachments.append( fn )
@@ -45,16 +47,13 @@ def texify(s):
         s = '  '.join(wrap(s.replace(c, TEX_REPLACE[c]), 50))
     return s
 
-date = to = ffrom = subject = None
-try:
-    date, to, ffrom, subject = texify(m['date']), texify(m['to']), texify(m['from']), texify(m['subject'])
-except AttributeError: # header missing?
-    pass
+to      = texify(m.get('to',''))
+date    = texify(m.get('date',''))
+ffrom   = texify(m.get('from',''))
+subject = texify(m.get('subject',''))
 
-from os.path import join, dirname
 attachments = [texify(a) for a in attachments]
-body        = texify(body)
-template    = open(join(dirname(__file__), 'template.tex'), 'r').read() % (
+template    = open(join(BASEDIR, 'template.tex'), 'r').read() % (
     date,
     to,
     ffrom,
@@ -68,5 +67,6 @@ p       = Popen(['xelatex'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 tex_log = p.communicate(input=template)[0]
 
 # for debugging:
-print template
-print( tex_log)
+#print m
+#print template
+#print( tex_log)
