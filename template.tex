@@ -2,7 +2,7 @@
 \usepackage{fullpage}
 \usepackage[top=.5in, bottom=.75in, left=.75in, right=.75in]{geometry}
 \usepackage{fontspec}
-\usepackage{tabularx}
+\usepackage{listings}
 \setromanfont{DejaVu Sans}
 \setsansfont{DejaVu Sans}
 \setmonofont{DejaVu Sans Mono}
@@ -10,14 +10,16 @@
 \begin{document}
 \setlength{\parindent}{0pt}
 
-\begin{tabularx}{\linewidth}{l X}
-Date:         & %s\\
-To:           & %s\\
-From:         & %s\\
-Subject:      & %s\\
-Attachment(s):& %s %s\\
-\end{tabularx}\\
+\lstset{breaklines=true,basicstyle=\ttfamily}
+\begin{lstlisting}
+Date:           %s
+To:             %s
+From:           %s
+Subject:        %s
+Attachment(s):  %s %s
 
 %s
+\end{lstlisting}
+
 
 \end{document}
