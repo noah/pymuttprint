@@ -69,5 +69,5 @@ tex_log = p.communicate(input=template)[0]
 
 # for debugging:
 #print m
-print( tex_log)
-print template
+#print( tex_log)
+#print template
