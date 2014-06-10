@@ -3,23 +3,21 @@
 \usepackage[top=.5in, bottom=.75in, left=.75in, right=.75in]{geometry}
 \usepackage{fontspec}
 \usepackage{listings}
-\setromanfont{DejaVu Sans}
-\setsansfont{DejaVu Sans}
-\setmonofont{DejaVu Sans Mono}
+\setmainfont{Monaco}
+\setsansfont{Monaco}
+\setmonofont{Monaco}
 
 \begin{document}
 \setlength{\parindent}{0pt}
+\parindent=0pt
 
-\lstset{breaklines=true,basicstyle=\ttfamily}
-\begin{lstlisting}
-Date:           %s
-To:             %s
-From:           %s
-Subject:        %s
-Attachment(s):  %s %s
+Date:           %s\\
+To:             %s\\
+From:           %s\\
+Subject:        %s\\
+Attachment(s):  %s %s\\
 
 %s
-\end{lstlisting}
 
 
 \end{document}
